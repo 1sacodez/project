@@ -13,9 +13,9 @@
       <button id="startBtn" type="button">Start Quiz</button> 
     
     <script>
-      const elEmail = document.getElementByID("email");
-      const elName = document.getElementByID("name");
-      const elStart = document.getElementByID("startBtn");
+      const elEmail = document.getElementById("email");
+      const elName = document.getElementById("name");
+      const elStart = document.getElementById("startBtn");
 
       elStart.addEventListener("click", () => {
         const email = elEmail.value.trim();
@@ -31,7 +31,7 @@
 
         localStorage.removeItem("quizState");
 
-        window.location.href = "quiz.html";
+        window.location.href = 'quiz.html';
       });
     </script>
 

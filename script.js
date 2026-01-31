@@ -60,7 +60,9 @@ function getAttempts(){
 function addAttempt(attempt){
   const attempts = getAttempts();
   attempts.push(attempt);
+
   const trimmed = attempts.slice(-10);
+
   writeJSON("quizAttempts", trimmed)
 }
 
@@ -129,9 +131,10 @@ function endQuiz(){
     total: quizData.length,
     secondsUsed: secondsUsed
   };
+
+  addAttempt(attempt);
 }
 
-addAttempt(attempt)
 
 restartBtn.addEventListener('click', () => {
   // reset data

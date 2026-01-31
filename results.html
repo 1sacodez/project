@@ -8,7 +8,10 @@
     <div class="quiz-container">
         <h2>Scorebook</h2>
 
-        <div id="attemptBox"></div>
+        <div id="userBox"></div>
+
+        <h3>Attempt History</h3>
+        <div id="attemptsBox"></div>
 
         <button id="clearBtn" type="button">Clear Scorebook</button>
         <button onclick="window.location.href='index.html';">Back to Start</button>
@@ -24,15 +27,15 @@
         const user = readJSON("quizUser", null);
         const attempts = readJSON("quizAttempts", []);
 
-        const userBox = document.getElementByID("userBox");
+        const userBox = document.getElementById("userBox");
         if (!user){
             userBox.innerHTML = "<p><b>No player saved.</b> Go back to start.</p>";
         }
         else{
-            userBox.innerHTML = "<p><b>Name:</b> ${user.name}<br><b>Email:</b> ${user.email}</p>";
+            userBox.innerHTML = `<p><b>Name:</b> ${user.name}<br><b>Email:</b> ${user.email}</p>`;
         }
 
-        const attemptsBox = document.getElementByID("attemptsBox");
+        const attemptsBox = document.getElementById("attemptsBox");
         if (attempts.length === 0){
             attemptsBox.innerHTML = "<p>No attempts yet.</p>";
         }
@@ -42,7 +45,7 @@
             const rows = attempts.slice().reverse().map(a => {
                 const d = new Date(a.dateISO);
                 return `<tr>
-                    <td>${d.toLocalString()}</td>
+                    <td>${d.toLocaleString()}</td>
                     <td>${a.score} / ${a.total}</td>
                     <td>${a.secondsUsed}s</td>
                     <td>${a.score === best ? "BEST" : ""}</td>
