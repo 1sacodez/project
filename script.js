@@ -37,9 +37,40 @@ const optionsEl = document.querySelector('.options');
 const resultEl = document.querySelector('.result');
 const scoreEl = document.getElementById('score');
 const restartBtn = document.querySelector('.restart-btn');
+let startedAt = new Date();
+
+function readJSON(key, fallback){
+  const raw = localStorage.getItem(key);
+  if (!raw) return fallback;
+  try {return JSON.parse(raw);}
+  catch(e){
+    console.warn("Bad JSON in localStorage for key:", key, e);
+    return fallback;
+  }
+}
+
+function writeJSON(key, value){
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+function getAttempts(){
+  return readJSON("quizAttempts", []);
+}
+
+function addAttempt(attempt){
+  const attempts = getAttempts();
+  attempts.push(attempt);
+  const trimmed = attempts.slice(-10);
+  writeJSON("quizAttempts", trimmed)
+}
+
+
 
 // display questions
 function showQuestion(){
+  if (currentQuestion === 0 && timeLeft === 20){
+    startedAt = new Date();
+  }
   if (currentQuestion >= quizData.length){
     endQuiz();
     return;
@@ -88,7 +119,19 @@ function endQuiz(){
   resultEl.style.display = 'block';
   scoreEl.textContent = score;
   restartBtn.style.display = 'block';
+
+  const endedAt = new Date();
+  const secondsUsed = Math.round((endedAt - startedAt) / 1000);
+
+  const attempt = {
+    dateISO: endedAt.toISOString(),
+    score: score,
+    total: quizData.length,
+    secondsUsed: secondsUsed
+  };
 }
+
+addAttempt(attempt)
 
 restartBtn.addEventListener('click', () => {
   // reset data

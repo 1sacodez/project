@@ -1,1 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf-8" />
+    <title>Scorebook</title>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>Scorebook</h2>
 
+        <div id="attemptBox"></div>
+
+        <button id="clearBtn" type="button">Clear Scorebook</button>
+        <button onclick="window.location.href='index.html';">Back to Start</button>
+    </div>
+
+    <script>
+        function readJSON(key, fallback){
+            const raw = localStorage.getItem(key);
+            if (!raw) return fallback;
+            try {return JSON.parse(raw);} catch {return fallback;}
+        }
+
+        const user = readJSON("quizUser", null);
+        const attempts = readJSON("quizAttempts", []);
+
+        const userBox = document.getElementByID("userBox");
+        if (!user){
+            userBox.innerHTML = "<p><b>No player saved.</b> Go back to start.</p>";
+        }
+        else{
+            userBox.innerHTML = "<p><b>Name:</b> ${user.name}<br><b>Email:</b> ${user.email}</p>";
+        }
+
+        const attemptsBox = document.getElementByID("attemptsBox");
+        if (attempts.length === 0){
+            attemptsBox.innerHTML = "<p>No attempts yet.</p>";
+        }
+        else{
+            const best = attempts.reduce((m, a) => Math.max(m, a.score), 0);
+
+            const rows = attempts.slice().reverse().map(a => {
+                const d = new Date(a.dateISO);
+                return `<tr>
+                    <td>${d.toLocalString()}</td>
+                    <td>${a.score} / ${a.total}</td>
+                    <td>${a.secondsUsed}s</td>
+                    <td>${a.score === best ? "BEST" : ""}</td>
+                </tr>`;
+            }).join("");
+
+            attemptsBox.innerHTML = `
+                <table border="1" cellpadding="6" cellspacing = "0">
+                    <tr><th>Date</th><th>Score</th><th>Time</th><th></th></tr>
+                    ${rows}
+                </table>
+            `;            
+        }
+
+        document.getElementById("clearBtn").addEventListener("click", () => {
+            localStorage.removeItem("quizAttempts");
+            alert("Cleared attempt history!");
+            window.location.reload();
+        });
+    </script>
+</body>
+</html>

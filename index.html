@@ -1,4 +1,3 @@
-// sign up page
 
 <!DOCTYPE html>
 <html>
@@ -11,7 +10,30 @@
       <input type="name" id="name" name="name" value="CANSECO, Roy" required><br>
       
       
-      <button onclick="window.location.href = 'quiz.html';">Start Quiz</button>
+      <button id="startBtn" type="button">Start Quiz</button> 
     
+    <script>
+      const elEmail = document.getElementByID("email");
+      const elName = document.getElementByID("name");
+      const elStart = document.getElementByID("startBtn");
+
+      elStart.addEventListener("click", () => {
+        const email = elEmail.value.trim();
+        const name = elName.value.trim();
+
+        if (!email || !name){
+          alert("Please enter BOTH name and email.");
+          return;
+        }
+
+        const user = {name, email};
+        localStorage.setItem("quizUser", JSON.stringify(user));
+
+        localStorage.removeItem("quizState");
+
+        window.location.href = "quiz.html";
+      });
+    </script>
+
   </body>
 </html>
