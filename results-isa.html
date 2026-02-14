@@ -25,7 +25,13 @@
         }
 
         const user = readJSON("quizUser", null);
-        const attempts = readJSON("quizAttempts", []);
+        const allAttempts = readJSON("quizAttempts", []);
+
+        // Only show attempts for this user AND this quiz
+        const attempts = allAttempts.filter(a => 
+        user && a.email === user.email && a.quizId === "isa_quiz"
+        );
+
 
         const userBox = document.getElementById("userBox");
         if (!user){
@@ -61,10 +67,19 @@
         }
 
         document.getElementById("clearBtn").addEventListener("click", () => {
-            localStorage.removeItem("quizAttempts");
-            alert("Cleared attempt history!");
-            window.location.reload();
+        const allAttempts = readJSON("quizAttempts", []);
+        const user = readJSON("quizUser", null);
+
+        // Keep only attempts that are NOT this user’s quiz
+        const remaining = allAttempts.filter(a => 
+            !(user && a.email === user.email && a.quizId === "isa_quiz")
+        );
+
+        localStorage.setItem("quizAttempts", JSON.stringify(remaining));
+        alert("Cleared your attempt history for this quiz!");
+        window.location.reload();
         });
+
     </script>
 </body>
 </html>

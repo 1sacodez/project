@@ -125,14 +125,19 @@ function endQuiz(){
   const endedAt = new Date();
   const secondsUsed = Math.round((endedAt - startedAt) / 1000);
 
-  const attempt = {
-    dateISO: endedAt.toISOString(),
-    score: score,
-    total: quizData.length,
-    secondsUsed: secondsUsed
-  };
+const user = readJSON("quizUser", null);
 
-  addAttempt(attempt);
+const attempt = {
+  dateISO: endedAt.toISOString(),
+  score: score,
+  total: quizData.length,
+  secondsUsed: secondsUsed,
+  username: user ? user.name : "Guest",
+  email: user ? user.email : "Unknown",
+  quizId: "isa_quiz"   // <-- unique ID for this quiz/student
+};
+
+addAttempt(attempt);
 }
 
 
