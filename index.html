@@ -1,39 +1,73 @@
-
 <!DOCTYPE html>
 <html>
-  <body>
-    Before we start! Please input the following for us to create your scorebook! <br>
-      <label for="email">Email:</label><br>
-      <input type="email" id="email" name="email" required><br>
-      
-      <label for="name">Name:</label><br>
-      <input type="name" id="name" name="name" value="CANSECO, Roy" required><br>
-      
-      
-      <button id="startBtn" type="button">Start Quiz</button> 
-    
-    <script>
-      const elEmail = document.getElementById("email");
-      const elName = document.getElementById("name");
-      const elStart = document.getElementById("startBtn");
+<head>
+  <title>KKQuiz!</title>
+  <link rel="icon" href="assets/KKQuiz! Favicon.png">
+  <link rel="stylesheet" href="stylesheets/styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap">
 
-      elStart.addEventListener("click", () => {
-        const email = elEmail.value.trim();
-        const name = elName.value.trim();
+</head>
+<body>
 
-        if (!email || !name){
-          alert("Please enter BOTH name and email.");
-          return;
-        }
+  <div class="header">
+    <img src="assets/KKQuiz! Favicon2.jpg" class="Favicon2">
+    <a href="#" class="title">KKQuiz!</a>
+    <div class="navz">
+      <a class="nav-link Home active" href="#">Home</a>
+      <a class="nav-link About" href="#">About</a>
+      <a class="nav-link References" href="#">References</a>
+    </div>
+  </div>
 
-        const user = {name, email};
-        localStorage.setItem("quizUser", JSON.stringify(user));
+  <main>
+    <h1>CHOOSE YOUR MINION!</h1>
+   <section class="minion-grid" aria-label="Pick a minion">
+      <a class="minion-card" href="start-bella.html" style="--img:url('assets/KKQuiz! Banana.png')">
+        <div class="minion-img" aria-hidden="true"></div>
+        <div class="tag tag-name">BELLA</div>
+        <div class="tag tag-class">04</div>
+      </a>
 
-        localStorage.removeItem("quizState");
+      <a class="minion-card" href="start-isa.html" style="--img:url('assets/KKQuiz! Banana.png')">
+        <div class="minion-img" aria-hidden="true"></div>
+        <div class="tag tag-name">ISA</div>
+        <div class="tag tag-class">05</div>
+      </a>
 
-        window.location.href = 'quiz.html';
-      });
-    </script>
+      <a class="minion-card" href="startpage.html?minion=minion1" style="--img:url('assets/KKQuiz! Banana.png')">
+        <div class="minion-img" aria-hidden="true"></div>
+        <div class="tag tag-name">MINION 1</div>
+        <div class="tag tag-class">00</div>
+      </a>
 
-  </body>
+      <a class="minion-card" href="startpage.html?minion=minion2" style="--img:url('assets/KKQuiz! Banana.png')">
+        <div class="minion-img" aria-hidden="true"></div>
+        <div class="tag tag-name">MINION 2</div>
+        <div class="tag tag-class">00</div>
+      </a>
+
+      <a class="minion-card" href="startpage.html?minion=minion3" style="--img:url('assets/KKQuiz! Banana.png')">
+        <div class="minion-img" aria-hidden="true"></div>
+        <div class="tag tag-name">MINION 3</div>
+        <div class="tag tag-class">00</div>
+      </a>
+    </section>
+
+    <section class="info" id="about">
+      <h2>About</h2>
+      <p>    KKQuiz! is a fun and interactive website to quiz you on how well you know selected students of 9-Potassium Batch 2029!
+
+    With different sets of multiple-choice questions, time limits ranging from 15 seconds to 30, and a silly banana watching over you in the corner (his name's Gary), the pressure's on as you go about the quiz and test your Knowledge on K-2029! Be prepared, because the questions could be as easy as their age or their favorite color, or as difficult as—!..... Oh, what, you thought we were gonna spill? Haha!
+
+    Now go ahead! Choose your minion, start the quiz, and see... how much do you really know?
+
+    And who knows? Maybe, Gary'll have for you a little surprise somewhere in between...</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Balingit - Buban</p>
+  </footer>
+
+</body>
 </html>

@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+  <body>
+    Before we start! Please input the following for us to create your scorebook! <br>
+      <label for="email">Email:</label><br>
+      <input type="email" id="email-isa" name="email" required><br>
+      
+      <label for="name">Name:</label><br>
+      <input type="name" id="name-isa" name="name" value="CANSECO, Roy" required><br>
+      
+      
+      <button id="startBtn" type="button">Start Quiz</button> 
+    
+    <script>
+      const elEmail = document.getElementById("email-isa");
+      const elName = document.getElementById("name-isa");
+      const elStart = document.getElementById("startBtn");
+
+      elStart.addEventListener("click", () => {
+        const email = elEmail.value.trim();
+        const name = elName.value.trim();
+
+        if (!email || !name){
+          alert("Please enter BOTH name and email.");
+          return;
+        }
+
+        const user = {name, email};
+        localStorage.setItem("quizUser", JSON.stringify(user));
+
+        localStorage.removeItem("quizState");
+
+        window.location.href = 'quiz-isa.html';
+      });
+    </script>
+
+  </body>
+</html>

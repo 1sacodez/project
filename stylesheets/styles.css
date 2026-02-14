@@ -1,0 +1,156 @@
+:root{
+  --bg: #f4d764;
+  --brand: #0f006d;
+  --accent: #38b6ff;
+  --pink: #ff66c4;
+  --card-border: #000;
+  --text: #111;
+  --shadow: 0 10px 25px rgba(0,0,0,.12);
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Trebuchet MS, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+}
+
+.header{
+  background: var(--brand);
+  font-family: "Jersey 10", system-ui, sans-serif;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.Favicon2{
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.title{
+  color: #fff;
+  text-decoration: none;
+  font-size: clamp(40px, 6vw, 84px);
+  line-height: 1;
+  flex: 1;
+  text-align: left;
+  letter-spacing: .5px;
+}
+
+.navz{ display: flex; gap: 8px; }
+
+.nav-link{
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 22px;
+}
+
+.nav-link:hover{ background: var(--accent); }
+.nav-link.active{ outline: 2px solid rgba(255,255,255,.45); }
+
+.page{
+  padding: 22px 16px 90px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1{
+  margin: 18px 0 18px;
+  color: var(--pink);
+  font-size: clamp(40px, 6vw, 88px);
+  font-family: "Jersey 10", Trebuchet MS, sans-serif;
+  text-shadow: 3px 4px 3px #0a004b;
+  text-align: center;
+}
+
+.minion-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+  align-items: stretch;
+  margin: 14px auto 30px;
+}
+
+.minion-card{
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 18px;
+  padding: 10px;
+  background: rgba(255,255,255,.35);
+  box-shadow: var(--shadow);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.minion-card:hover{
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 16px 34px rgba(0,0,0,.18);
+}
+
+.minion-img{
+  width: 100%;
+  aspect-ratio: 3 / 6;
+  border: 4px solid var(--card-border);
+  border-radius: 14px;
+  background-image: var(--img);
+  background-size: cover;
+  background-position: center;
+
+  clip-path: polygon(18% 0%, 100% 0%, 82% 100%, 0% 100%);
+}
+
+.tag{
+  position: absolute;
+  background: #000;
+  color: #fff;
+  font-weight: 700;
+  padding: 8px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  letter-spacing: .4px;
+}
+
+.tag-name{ top: 14px; left: 14px; }
+.tag-class{ bottom: 14px; right: 14px; }
+
+.info{
+  max-width: 900px;
+  margin: 18px auto;
+  padding: 14px 16px;
+  background: rgba(255,255,255,.45);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.info h2{
+  margin: 0 0 8px;
+  font-family: "Jersey 10", system-ui, sans-serif;
+  font-size: 38px;
+}
+
+.footer{
+  background: var(--brand);
+  font-family: "Jersey 10", system-ui, sans-serif;
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+}
+
+@media (max-width: 520px){
+  .Favicon2{ width: 52px; height: 52px; }
+  .nav-link{ display:none; }
+}
