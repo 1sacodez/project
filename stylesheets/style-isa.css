@@ -50,25 +50,3 @@ body {
             margin-bottom: 20px;
             color: #ff5722;
         }
-
-        .result {
-            font-size: 1.5em;
-            color: #4caf50;
-            display: none;
-        }
-
-        .restart-btn, .results-btn {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 20px;
-            display: none;
-        }
-
-        .restart-btn:hover {
-            background-color: #0056b3;
-        }
