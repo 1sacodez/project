@@ -1,7 +1,7 @@
 // questions
 const quizData = [
   {
-    question: "What nickname besides "Mia" does Mia go by most at home?",
+    question: "What nickname besides ''Mia'' does Mia go by most at home?",
     options: ["Amelia", "Amy", "Mimi", "Pao"],
     answer: "Pao"
   },
